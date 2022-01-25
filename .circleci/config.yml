@@ -17,10 +17,12 @@ jobs:
       - checkout
       - run:
           name: Login to docker
-          command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+          command: |
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker build -t first_build .
       - run: 
           name: Build image
-          command: docker build -t first_build .
+          command: echo "success"
              
       
 #start it
