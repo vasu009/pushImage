@@ -11,7 +11,7 @@ jobs:
 
   build:
     docker:
-      - image: "ubuntu:latest"
+      - image: "circleci/node:latest"
     steps:
       - run:
           name: Install Docker client
