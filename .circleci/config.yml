@@ -29,17 +29,10 @@ jobs:
       - run: 
           name: Docker Run
           command: |
-            sudo snap start docker
+            export DOCKER_HOST=tcp://localhost:2375
+            # sudo service --status-all
+            # sudo service docker start
 
-      - run: 
-          name: start
-          command: |
-            sudo su
-            service docker stop
-            cd /var/run/docker/libcontainerd
-            rm -rf containerd/*
-            rm -f docker-containerd.pid
-            service docker start
 
       - run: 
           name: Build image
