@@ -29,8 +29,8 @@ jobs:
           name: Docker Run
           command: |
             export DOCKER_HOST=tcp://localhost:2375
-            # sudo service --status-all
-            # sudo service docker start
+            sudo service --status-all
+            sudo service docker start
 
 
       - run: 
