@@ -20,7 +20,7 @@ jobs:
           command: |
             apt-get update
             apt-get install sudo
-            
+      - run: 
           command: |
             sudo apt-get update -y
 # Install Docker's package dependencies.
