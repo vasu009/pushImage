@@ -25,7 +25,7 @@ jobs:
       - run: 
           name: Build image
           command: |
-            systemctl start docker
+            service docker start
             docker build -t first_build .   
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker context ls
