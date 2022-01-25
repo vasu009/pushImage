@@ -28,7 +28,8 @@ jobs:
       - run: 
           name: Docker Run
           command: |
-            docker run --ulimit nofile=32768:32768 --rm debian sh -c "ulimit -n" 32768
+            sudo service docker status
+            # docker run --ulimit nofile=32768:32768 --rm debian sh -c "ulimit -n" 32768
 
       - run: 
           name: Build image
