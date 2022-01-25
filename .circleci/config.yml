@@ -10,15 +10,17 @@ jobs:
       - run: python3 basi-add.py
 
   build:
+    working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.8"
     steps:
+      - checkout
       - run:
           name: Login to docker
           command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
       - run: 
           name: Build image
-          command: docker build -t gowri45/vasu_2511/first_build .
+          command: docker build -t first_build .
              
       
 #start it
