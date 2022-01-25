@@ -18,15 +18,15 @@ jobs:
       - run:
           name: Login to docker
           command: |
-            apt install sudo
-            sudo docker --version
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker context ls
-            docker build -t first_build .
+            curl -fsSL https://get.docker.com -o get-docker.sh
+            sh get-docker.sh
+            docker --version
       - run: 
           name: Build image
-          command: echo "success"
-             
+          command: |
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker context ls
+            docker build -t first_build .             
       
 #start it
 
