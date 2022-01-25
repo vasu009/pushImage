@@ -28,8 +28,29 @@ jobs:
       - run: 
           name: Docker Run
           command: |
-            sudo service docker status
-            # docker run --ulimit nofile=32768:32768 --rm debian sh -c "ulimit -n" 32768
+            apt-get install \
+            ca-certificates \
+            curl \
+            gnupg \
+            lsb-release
+      - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      - run: 
+          name: Docker Run
+          command: |
+            echo \
+            "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) stable nightly" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      - run: 
+          name: Docker Run
+          command: |
+            sudo apt-get update
+            sudo apt-get install docker-ce docker-ce-cli containerd.io
+            apt-cache madison docker-ce
+            sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+
+        
+# sudo service docker status
+# docker run --ulimit nofile=32768:32768 --rm debian sh -c "ulimit -n" 32768
 
       - run: 
           name: Build image
