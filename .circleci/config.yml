@@ -21,15 +21,21 @@ jobs:
           docker_layer_caching: true
 
       - run: 
+          name: Docker login
+          command: |
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+      - run: 
           name: Build image
           command: |
             docker build -t first_build .   
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker build -t first_build:1.0 .
+
+      - run: 
+          name: Push image
+          command: |
             docker tag first_build:1.0 gowri45/vasu_2511  
             docker push gowri45/vasu_2511          
       
-#start it
 
 workflows:
   build_and_test:
@@ -38,23 +44,3 @@ workflows:
       - build:
           requires:
             - test
-
-
-
-
-      # - run: 
-      #     name: install docker
-      #     command: |
-      #       apt update -y
-      #       apt install curl -y
-      #       apt install sudo -y
-      #       curl -fsSL https://get.docker.com -o get-docker.sh      
-      #       sh get-docker.sh
-      #       docker --version
-
-      # - run: 
-      #     name: Docker Run
-      #     command: |
-      #       export DOCKER_HOST=tcp://localhost:2375
-      #       sudo service --status-all
-      #       sudo service docker start
