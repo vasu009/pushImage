@@ -25,7 +25,8 @@ jobs:
           command: |
             docker build -t first_build .   
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker build -t first_build .          
+            docker build -t first_build:v1 .
+            docker push gowri45/vasu_2511          
       
 #start it
 
