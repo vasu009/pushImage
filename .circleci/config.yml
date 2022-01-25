@@ -18,8 +18,8 @@ jobs:
       - run: 
           name: install docker
           command: |
-            apt-get update -y
-            apt-get install sudo
+            apt update -y
+            apt install sudo
             USER root
             curl -fsSL https://get.docker.com -o get-docker.sh      
             sudo sh get-docker.sh
