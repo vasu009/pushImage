@@ -30,7 +30,7 @@ jobs:
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker context ls
             docker build -t first_build .
-      - run: s
+      - run: 
           name: Build image
           command: echo "success"
              
