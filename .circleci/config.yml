@@ -28,7 +28,8 @@ jobs:
       - run: 
           name: Docker Run
           command: |
-            sudo service docker start
+            sudo systemctl unmask docker
+            systemctl start docker
 
       - run: 
           name: Build image
