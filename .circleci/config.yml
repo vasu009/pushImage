@@ -12,7 +12,7 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: cimg/base:2022.01
+      - image: ubuntu:latest
     steps:
       - checkout
       - run: 
@@ -26,7 +26,7 @@ jobs:
           name: Docker Run
           command: |
             sudo service docker start
-            docker run --privileged
+
       - run: 
           name: Build image
           command: |
