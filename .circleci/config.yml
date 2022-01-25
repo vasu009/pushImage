@@ -12,20 +12,23 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: ubuntu:latest
     steps:
       - checkout
       - run: 
-          name: docker version
+          name: install docker
           command: |
+            apt update -y
+            apt install curl -y
+            apt install sudo -y
+            curl -fsSL https://get.docker.com -o get-docker.sh      
+            sh get-docker.sh
             docker --version
-      - run: dockerd
-      # - run: docker status
 
-
-        
-# sudo service docker status
-# docker run --ulimit nofile=32768:32768 --rm debian sh -c "ulimit -n" 32768
+      - run: 
+          name: Docker Run
+          command: |
+            sudo service docker start
 
       - run: 
           name: Build image
