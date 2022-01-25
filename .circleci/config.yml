@@ -1,0 +1,31 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/circleci-python
+    docker:
+      - image: "circleci/python:3.8"
+    steps:
+      - checkout
+      - run: python3 basi-add.py
+
+  build:
+    docker:
+      - image: "circleci/python:3.8"
+    steps:
+      - run:
+          name: Install Docker client
+          command: |
+            docker login -u Gowri45 -p Gowri@4045
+            docker build -t my-first-build-image .
+             
+      
+
+
+workflows:
+  build_and_test:
+    jobs:
+      - test
+      - build
+          requires:
+            - test
