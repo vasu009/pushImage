@@ -32,16 +32,16 @@ jobs:
             software-properties-common
 
 # Download and add Docker's official public PGP key.
-       - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Verify the fingerprint.
-       - run: sudo apt-key fingerprint 0EBFCD88
+      - run: sudo apt-key fingerprint 0EBFCD88
 
 # Add the `stable` channel's Docker upstream repository.
 #
 # If you want to live on the edge, you can change "stable" below to "test" or
 # "nightly". I highly recommend sticking with stable!
-       - run:
+      - run:
           command: |
             sudo add-apt-repository \
             "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -49,13 +49,13 @@ jobs:
             stable"
 
 # Update the apt package list (for the new apt repo).
-       - run: sudo apt-get update -y
+      - run: sudo apt-get update -y
 
 # Install the latest version of Docker CE.
-       - run: sudo apt-get install -y docker-ce
+      - run: sudo apt-get install -y docker-ce
 
 # Allow your user to access the Docker CLI without needing root access.
-       - run: sudo usermod -aG docker $USER
+      - run: sudo usermod -aG docker $USER
       # - run: 
       #     name: Build image
       #     command: |
