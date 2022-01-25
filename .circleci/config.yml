@@ -19,7 +19,7 @@ jobs:
           name: docker version
           command: |
             docker --version
-      - run: systemctl unmask docker.service
+      - run: unmask docker.service
       # - run: docker status
 
 
