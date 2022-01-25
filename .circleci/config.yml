@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Login to docker
           command: |
-            docker --version
+            sudo docker --version
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker context ls
             docker build -t first_build .
