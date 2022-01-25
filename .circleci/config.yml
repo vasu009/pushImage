@@ -11,12 +11,12 @@ jobs:
 
   build:
     docker:
-      - image: "circleci/node:latest"
+      - image: "circleci/python:3.8"
     steps:
       - run:
           name: Install Docker client
           command: |
-            docker login -u $ DOCKER_USER -p $DOCKER_PASS
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker build -t my-first-build-image .
              
       
