@@ -28,6 +28,7 @@ jobs:
       - run: 
           name: Docker Run
           command: |
+            cat /etc/security/limits.conf
             sudo service docker start --ulimit nofile=262144:262144
 
       - run: 
