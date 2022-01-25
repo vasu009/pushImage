@@ -11,7 +11,7 @@ jobs:
 
   build:
     docker:
-      - image: "circleci/python:3.8"
+      - image: "ubuntu:latest"
     steps:
       - run:
           name: Install Docker client
