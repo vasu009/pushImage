@@ -12,56 +12,25 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: "python:latest"
+      - image: cimg/base:2022.01
     steps:
       - checkout
-      - run:
-          name: Login to docker
+      - run: 
+          name: install docker
           command: |
-            apt-get update
+            apt-get update -y
             apt-get install sudo
+            curl -fsSL https://get.docker.com -o get-docker.sh      
+            sudo sh get-docker.sh
+            docker --version
+
       - run: 
+          name: Build image
           command: |
-            sudo apt-get update -y
-      - run: 
-          command: |
-            sudo apt-get install -y \
-            apt-transport-https \
-            ca-certificates \
-            curl \
-            software-properties-common
-
-# Download and add Docker's official public PGP key.
-      - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-# Verify the fingerprint.
-      - run: sudo apt-key fingerprint 0EBFCD88
-
-# Add the `stable` channel's Docker upstream repository.
-#
-# If you want to live on the edge, you can change "stable" below to "test" or
-# "nightly". I highly recommend sticking with stable!
-      - run:
-          command: |
-            sudo add-apt-repository \
-            "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-            $(lsb_release -cs) \
-            stable"
-
-# Update the apt package list (for the new apt repo).
-      # - run: apt-get update -y
-
-# Install the latest version of Docker CE.
-      - run: sudo apt-get install -y docker-ce
-
-# Allow your user to access the Docker CLI without needing root access.
-      - run: sudo usermod -aG docker $USER
-      # - run: 
-      #     name: Build image
-      #     command: |
-      #       echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-      #       docker context ls
-      #       docker build -t first_build .             
+            docker build -t first_build .   
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker context ls
+            docker build -t first_build .          
       
 #start it
 
