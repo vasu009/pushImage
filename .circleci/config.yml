@@ -28,12 +28,12 @@ jobs:
       - run: 
           name: Build image
           command: |
-            docker build -t first_build .   
+            docker build -t first_build:0.1 .   
 
       - run: 
           name: Push image
           command: |
-            docker tag first_build:1.0 gowri45/vasu_2511  
+            docker tag first_build:0.1 gowri45/vasu_2511  
             docker push gowri45/vasu_2511          
       
 
