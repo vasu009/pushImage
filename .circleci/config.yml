@@ -12,7 +12,7 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: ubuntu:latest
+      - image: ubuntu:hirsute-20211208
     steps:
       - checkout
       - run: 
