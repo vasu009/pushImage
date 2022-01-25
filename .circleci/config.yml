@@ -23,9 +23,13 @@ jobs:
             docker --version
 
       - run: 
+          name: Docker Run
+          command: |
+            docker run --privileged
+            sudo service docker start
+      - run: 
           name: Build image
           command: |
-            sudo service docker start
             docker build -t first_build .   
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker context ls
