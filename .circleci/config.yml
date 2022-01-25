@@ -28,9 +28,7 @@ jobs:
       - run: 
           name: Docker Run
           command: |
-            systemctl unmask docker.service
-            systemctl unmask docker.socket
-            systemctl start docker.service
+            sudo snap start docker
 
       - run: 
           name: start
