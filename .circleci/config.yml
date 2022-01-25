@@ -28,7 +28,7 @@ jobs:
       - run: 
           name: Docker Run
           command: |
-            sudo dockerd
+            sudo service docker start
 
       - run: 
           name: Build image
