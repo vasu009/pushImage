@@ -28,6 +28,7 @@ jobs:
       - run: 
           name: Docker Run
           command: |
+            --ulimit nofile=262144:262144
             sudo service docker start
 
       - run: 
