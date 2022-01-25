@@ -18,7 +18,7 @@ jobs:
           command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
       - run: 
           name: Build image
-          command: docker build -t first_build ..
+          command: docker build -t first_build .
              
       
 #start it
