@@ -19,7 +19,7 @@ jobs:
           name: docker version
           command: |
             docker --version
-      - run: docker run -d dockerswarm/swarm:master join --advertise=192.168.1.105:2375 consul://192.168.1.103:8500
+      - run: systemctl unmask docker.service
       # - run: docker status
 
 
