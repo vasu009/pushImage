@@ -19,7 +19,7 @@ jobs:
           name: docker version
           command: |
             docker --version
-      - run: docker start
+      - run: docker start my_container
       # - run: docker status
 
 
