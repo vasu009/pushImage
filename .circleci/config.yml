@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Install Docker client
           command: |
-            docker login -u Gowri45 -p Gowri@4045
+            docker login -u $ DOCKER_USER-p $DOCKER_PASS
             docker build -t my-first-build-image .
              
       
