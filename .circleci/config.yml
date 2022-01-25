@@ -25,6 +25,7 @@ jobs:
       - run: 
           name: Docker Run
           command: |
+            apt update -y
             sudo apt install docker -y
             docker --version
 
