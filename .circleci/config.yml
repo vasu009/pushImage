@@ -11,7 +11,8 @@ jobs:
 
   build:
     working_directory: ~/circleci-python
-
+    docker:
+      - image: cimg/python:3.10.2
     steps:
       - checkout
 
